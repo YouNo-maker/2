@@ -1,0 +1,29 @@
+[tool.ruff]
+# Target Python version used across the project
+target-version = "py311"
+# Keep lines readable; tests currently assume fairly short lines
+line-length = 100
+# Exclude generated, data, cache and meta directories
+extend-exclude = [
+	"data",
+	"docs",
+	".github",
+	".cursor",
+	".kiro",
+	".claude",
+	".pytest_cache",
+	"uvicorn.out",
+	"uvicorn.err",
+	"uvicorn.log",
+	"server.log",
+]
+# Lint rulesets: Pyflakes/pycodestyle/imports/bugbear/pyupgrade
+select = ["E", "F", "I", "B", "UP"]
+# Compatibility with common formatters and avoid failing on long lines initially
+ignore = ["E203", "E501"]
+
+[tool.ruff.lint]
+per-file-ignores = {"app/server.py" = ["E501", "B"]}
+
+[tool.ruff.lint.isort]
+known-first-party = ["app", "tests"] 

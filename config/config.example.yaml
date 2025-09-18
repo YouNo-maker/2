@@ -1,0 +1,26 @@
+# Example configuration for PreOpen API
+# Copy to config/config.yaml and adjust to your environment
+
+market: SSE
+
+storage:
+  db_path: data/app.db
+
+preopen:
+  # Minutes before market open to start first fetch
+  first_fetch_minutes_before_open: 60
+
+scoring:
+  version: v1.0.0
+  weights:
+    relevance: 0.25
+    sentiment_strength: 0.20
+    event_weight: 0.25
+    recency: 0.20
+    source_trust: 0.10
+  diversity:
+    sector_cap_pct: 60
+
+# Optional: path for HTTP conditional request cache
+cache:
+  http_cache_path: data/http_cache.json 

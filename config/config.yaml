@@ -1,0 +1,47 @@
+market: SSE
+preopen:
+  first_fetch_minutes_before_open: 60
+  topn_output_minutes_before_open: 35
+  plan_output_minutes_before_open: 30
+sources:
+  - id: rss_main
+    type: rss
+    url: https://example.com/feed.xml
+    limit: 30
+  - id: rest_hn
+    type: rest
+    url: https://hn.algolia.com/api/v1/search_by_date
+    params:
+      tags: story
+    item_path: hits
+    title_field: title
+    url_field: url
+    published_at_field: created_at
+network:
+  timeout_sec: 10
+  retries: 1
+  qps: 2
+  concurrency: 2
+llm:
+  provider: deepseek
+  temperature: 0.3
+  timeout_ms: 12000
+  cache_ttl_minutes: 1440
+  tagger_enabled: false
+  prompt_version: v1
+scoring:
+  weights:
+    relevance: 0.25
+    sentiment_strength: 0.20
+    event_weight: 0.25
+    recency: 0.20
+    source_trust: 0.10
+  diversity:
+    sector_cap_pct: 60
+planner:
+  enricher_enabled: false
+intraday:
+  watcher_enabled: true
+  poll_interval_minutes: 5
+alerts:
+  error_rate_threshold: 0.01 

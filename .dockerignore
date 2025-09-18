@@ -1,0 +1,28 @@
+# Git & editors
+.git
+.gitignore
+.vscode
+.idea
+
+# Python caches
+__pycache__
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg-info
+.venv
+venv
+
+# Test & local runtime
+.pytest_cache
+.coverage*
+htmlcov
+
+# Logs & data
+*.log
+/data
+/data/*
+uvicorn.out
+uvicorn.err
+server.log 

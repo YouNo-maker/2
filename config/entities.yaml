@@ -1,0 +1,11 @@
+symbols:
+  - exchange: SSE
+    code: "600519"
+    name: Kweichow Moutai
+    aliases: ["Kweichow Moutai", "Moutai", "贵州茅台", "茅台", "600519"]
+    sectors: ["Beverages", "Consumer"]
+  - exchange: SSE
+    code: "600000"
+    name: Pudong Development Bank
+    aliases: ["浦发银行", "SPDB", "600000", "Pudong Bank"]
+    sectors: ["Banking", "Financials"] 

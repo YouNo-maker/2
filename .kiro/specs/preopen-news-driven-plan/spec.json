@@ -1,0 +1,21 @@
+{
+    "name": "preopen-news-driven-plan",
+    "feature_title": "开盘前新闻驱动的操盘计划",
+    "language": "zh",
+    "phase": "implemented",
+    "approvals": {
+        "requirements": {
+            "generated": true,
+            "approved": true
+        },
+        "design": {
+            "generated": true,
+            "approved": true
+        },
+        "tasks": {
+            "generated": true,
+            "approved": true
+        }
+    },
+    "updated_at": "2025-09-11T00:15:00Z"
+}

@@ -1,0 +1,12 @@
+INFO:     Started server process [35028]
+INFO:     Waiting for application startup.
+ERROR:    Traceback (most recent call last):
+  File "D:\py\Lib\site-packages\starlette\routing.py", line 732, in lifespan
+    async with self.lifespan_context(app) as maybe_state:
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\py\Lib\contextlib.py", line 210, in __aenter__
+    return await anext(self.gen)
+                 ^^^^^^^^^^^^^^^
+TypeError: 'generator' object is not an async iterator
+
+ERROR:    Application startup failed. Exiting.

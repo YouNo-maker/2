@@ -1,0 +1,51 @@
+name: CI
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Cache pip
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+
+      - name: Install dependencies
+        run: |
+          python -m pip install -U pip
+          pip install --no-cache-dir -r requirements.txt
+          pip install ruff mypy pytest-cov
+
+      - name: Lint (ruff)
+        run: |
+          ruff --version
+          ruff check . || echo "Ruff warnings (non-blocking)"
+
+      - name: Type check (mypy)
+        run: mypy . || echo "Mypy warnings (non-blocking)"
+
+      - name: Run tests with coverage
+        run: pytest -q --cov=app --cov-config=.coveragerc --cov-report=term-missing --cov-fail-under=60
+
+      - name: Smoke test server
+        env:
+          PREOPEN_JSON_LOGS: '1'
+        run: python scripts/run_and_verify.py
+
+      - name: Build Docker image
+        run: docker build -t preopen-api:ci . 
